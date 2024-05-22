@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.models.Album;
+import com.project.models.Role;
 import com.project.models.User;
 import com.project.repositories.UserRepository;
 
@@ -16,6 +17,7 @@ public class UserService {
     private UserRepository userRepository;
 
     public User createUser(User user) {
+    	user.setRole(Role.USER);
         return userRepository.save(user);
     }
 
@@ -25,7 +27,6 @@ public class UserService {
 
         existingUser.setFullName(updatedUser.getFullName());
         existingUser.setUsername(updatedUser.getUsername());
-        existingUser.setRole(updatedUser.getRole());
 
         return userRepository.save(existingUser);
     }
